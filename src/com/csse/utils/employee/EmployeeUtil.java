@@ -1,9 +1,9 @@
-package java.csse.utils.employee;
+package com.csse.utils.employee;
 
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.TransformerException;
 
-import java.csse.config.Config;
+import com.csse.config.Config;
 import java.io.File;
 import org.xml.sax.SAXException;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class EmployeeUtil extends Config {
 	public static String getEmployeeById(String id) throws Exception {
 		NodeList n; Element e = null;
 		n = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-				.parse(new File("src/e/EmployeeQuery.xml"))
+				.parse(new File("src/resources/EmployeeQuery.xml"))
 				.getElementsByTagName("query");
 		for (int x = 0; x < n.getLength(); x++) {
 			e = (Element) n.item(x);
