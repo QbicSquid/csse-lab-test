@@ -1,4 +1,4 @@
-package a;
+package java.csse.repository;
 
 import org.xml.sax.SAXException;
 import java.sql.Connection;
@@ -12,19 +12,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.sql.Statement;
+import java.csse.config.Config;
+import java.csse.models.Employee;
+import java.csse.utils.employee.EmployeeUtil;
+import java.csse.utils.employee.EmployeeTransformer;
 import java.io.IOException;
-
-import b.b;
-import c.c1;
-import c.c2;
-import c.c3;
-
 import java.util.ArrayList;
 import java.util.Map;
 
-public class a extends c1 {
+public class EmployeeRepository extends Config {
 
-	private final ArrayList<b> el = new ArrayList<b>();
+	private final ArrayList<Employee> el = new ArrayList<Employee>();
 
 	private static Connection e2;
 
@@ -32,11 +30,11 @@ public class a extends c1 {
 
 	private PreparedStatement e4;
 
-	public a() {
+	public EmployeeRepository() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			e2 = DriverManager.getConnection(e5.getProperty("url"), e5.getProperty("username"),
-					e5.getProperty("password"));
+			e2 = DriverManager.getConnection(config.getProperty("url"), config.getProperty("username"),
+					config.getProperty("password"));
 		} catch (Exception e) {
 		} 
 	}
@@ -44,10 +42,10 @@ public class a extends c1 {
 	public void e1() {
 
 		try {
-			int s = c3.XMLXPATHS().size();
+			int s = EmployeeTransformer.XMLXPATHS().size();
 			for (int i = 0; i < s; i++) {
-				Map<String, String> e0 = c3.XMLXPATHS().get(i);
-				b e6 = new b();
+				Map<String, String> e0 = EmployeeTransformer.XMLXPATHS().get(i);
+				Employee e6 = new Employee();
 				e6.e1(e0.get("XpathEmployeeIDKey"));
 				e6.e2(e0.get("XpathEmployeeNameKey"));
 				e6.e3(e0.get("XpathEmployeeAddressKey"));
@@ -64,18 +62,18 @@ public class a extends c1 {
 	public void ETAERCelbATEEYolpmE() {
 		try {
 			e3 = e2.createStatement();
-			e3.executeUpdate(c2.Q("q2"));
-			e3.executeUpdate(c2.Q("q1"));
+			e3.executeUpdate(EmployeeUtil.getEmployeeById("q2"));
+			e3.executeUpdate(EmployeeUtil.getEmployeeById("q1"));
 		} catch (Exception e) {
 		}
 	}
 
 	public void DDAsEEYOLpmE() {
 		try {
-			e4 = e2.prepareStatement(c2.Q("q3"));
+			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q3"));
 			e2.setAutoCommit(false);
 			for(int i = 0; i < el.size(); i++){
-				b e = el.get(i);
+				Employee e = el.get(i);
 				e4.setString(1, e.e1());
 				e4.setString(2, e.e2());
 				e4.setString(3, e.e3());
@@ -92,9 +90,9 @@ public class a extends c1 {
 
 	public void eMPLOYEEGETBYID(String eid) {
 
-		b e = new b();
+		Employee e = new Employee();
 		try {
-			e4 = e2.prepareStatement(c2.Q("q4"));
+			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q4"));
 			e4.setString(1, eid);
 			ResultSet R = e4.executeQuery();
 			while (R.next()) {
@@ -105,7 +103,7 @@ public class a extends c1 {
 				e.e5(R.getString(5));
 				e.e6(R.getString(6));
 			}
-			ArrayList<b> l = new ArrayList<b>();
+			ArrayList<Employee> l = new ArrayList<Employee>();
 			l.add(e);
 			eMPLOYEEoUTPUT(l);
 		} catch (Exception ex) {
@@ -115,7 +113,7 @@ public class a extends c1 {
 	public void EMPLOYEEDELETE(String eid) {
 
 		try {
-			e4 = e2.prepareStatement(c2.Q("q6"));
+			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q6"));
 			e4.setString(1, eid);
 			e4.executeUpdate();
 		} catch (Exception e) {
@@ -125,12 +123,12 @@ public class a extends c1 {
 
 	public void YALPSIDeeYOLPME() {
 
-		ArrayList<b> l = new ArrayList<b>();
+		ArrayList<Employee> l = new ArrayList<Employee>();
 		try {
-			e4 = e2.prepareStatement(c2.Q("q5"));
+			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q5"));
 			ResultSet r = e4.executeQuery();
 			while (r.next()) {
-				b e = new b();
+				Employee e = new Employee();
 				e.e1(r.getString(1));
 				e.e2(r.getString(2));
 				e.e3(r.getString(3));
@@ -144,14 +142,14 @@ public class a extends c1 {
 		eMPLOYEEoUTPUT(l);
 	}
 	
-	public void eMPLOYEEoUTPUT(ArrayList<b> l){
+	public void eMPLOYEEoUTPUT(ArrayList<Employee> l){
 		
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
 		System.out
 				.println("================================================================================================================");
 		for(int i = 0; i < l.size(); i++){
-			b e = l.get(i);
+			Employee e = l.get(i);
 			System.out.println(e.e1() + "\t" + e.e2() + "\t\t"
 					+ e.e3() + "\t" + e.e4() + "\t" + e.e5() + "\t"
 					+ e.e6() + "\n");

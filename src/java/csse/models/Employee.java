@@ -1,6 +1,6 @@
-package b;
+package java.csse.models;
 
-public class b {
+public class Employee {
 
 	public String iDeMPLOYEE;
 	public String nAMEfULL;
