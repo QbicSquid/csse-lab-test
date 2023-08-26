@@ -31,14 +31,6 @@ public class EmployeeTransformer extends Config {
 
 	private static Map<String, String> m = null;
 
-	public static void request() throws Exception {
-
-		Source x = new StreamSource(new File("src/resources/EmployeeRequest.xml"));
-		Source s = new StreamSource(new File("src/resources/Employee-modified.xsl"));
-		Result o = new StreamResult(new File("src/resources/EmployeeResponse.xml"));
-		TransformerFactory.newInstance().newTransformer(s).transform(x, o);
-	}
-
 	public static ArrayList<Map<String, String>> XMLXPATHS() throws Exception {
 
 		Document d = DocumentBuilderFactory.newInstance().newDocumentBuilder()

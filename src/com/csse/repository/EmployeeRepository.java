@@ -89,19 +89,18 @@ public class EmployeeRepository extends Config {
 	}
 
 	public void deleteEmployee(String eid) {
-
 		try {
 			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q6"));
 			e4.setString(1, eid);
 			e4.executeUpdate();
 		} catch (Exception e) {
+
 			e.printStackTrace();
 		}
 	}
 
 	public void display() {
-
-		ArrayList<Employee> l = new ArrayList<Employee>();
+		ArrayList<Employee> employees = new ArrayList<Employee>();
 		try {
 			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q5"));
 			ResultSet r = e4.executeQuery();
@@ -113,11 +112,11 @@ public class EmployeeRepository extends Config {
 				e.setFaculty(r.getString(4));
 				e.setDepartment(r.getString(5));
 				e.setDesignation(r.getString(6));
-				l.add(e);
+				employees.add(e);
 			}
 		} catch (Exception e) {
 		}
-		printList(l);
+		printList(employees);
 	}
 	
 	public void printList(ArrayList<Employee> employees){
