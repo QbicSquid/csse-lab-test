@@ -1,10 +1,10 @@
-package java.csse.utils.employee;
+package com.csse.utils.employee;
 
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathFactory;
 import java.util.HashMap;
 import java.util.Map;
-import java.csse.config.Config;
+import com.csse.config.Config;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -31,18 +31,18 @@ public class EmployeeTransformer extends Config {
 
 	private static Map<String, String> m = null;
 
-	public static void rEQUESTtRANSFORM() throws Exception {
+	public static void request() throws Exception {
 
-		Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
-		Source s = new StreamSource(new File("src/e/Employee-modified.xsl"));
-		Result o = new StreamResult(new File("src/e/EmployeeResponse.xml"));
+		Source x = new StreamSource(new File("src/resources/EmployeeRequest.xml"));
+		Source s = new StreamSource(new File("src/resources/Employee-modified.xsl"));
+		Result o = new StreamResult(new File("src/resources/EmployeeResponse.xml"));
 		TransformerFactory.newInstance().newTransformer(s).transform(x, o);
 	}
 
 	public static ArrayList<Map<String, String>> XMLXPATHS() throws Exception {
 
 		Document d = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-				.parse("src/e/EmployeeResponse.xml");
+				.parse("src/resources/EmployeeResponse.xml");
 		XPath x = XPathFactory.newInstance().newXPath();
 		int n = Integer.parseInt((String) x.compile("count(//Employees/Employee)").evaluate(d, XPathConstants.STRING));
 		for (int i = 1; i <= n; i++) {

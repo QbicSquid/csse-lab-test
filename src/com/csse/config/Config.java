@@ -1,8 +1,8 @@
-package java.csse.config;
+package com.csse.config;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.csse.utils.employee.EmployeeUtil;
+import com.csse.utils.employee.EmployeeUtil;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -13,7 +13,7 @@ public class Config {
 
 	static {
 		try {
-			config.load(EmployeeUtil.class.getResourceAsStream("../config/config.properties"));
+			config.load(EmployeeUtil.class.getResourceAsStream("./config.properties"));
 		} catch (Exception e) {
 			
 		}

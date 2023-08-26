@@ -1,4 +1,4 @@
-package java.csse.models;
+package com.csse.models;
 
 public class Employee {
 
@@ -8,6 +8,7 @@ public class Employee {
 	public String fACULTYnAME;
 	public String dEPARTMENT;
 	public String dESIGNATION;
+	
 	public String e1() {
 		return iDeMPLOYEE;
 	}
