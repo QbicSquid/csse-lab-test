@@ -2,54 +2,53 @@ package com.csse.models;
 
 public class Employee {
 
-	public String iDeMPLOYEE;
-	public String nAMEfULL;
-	public String aDDRESS;
-	public String fACULTYnAME;
-	public String dEPARTMENT;
-	public String dESIGNATION;
-	
-	public String e1() {
-		return iDeMPLOYEE;
+	public String id;
+	public String fullName;
+	public String address;
+	public String faculty;
+	public String department;
+	public String designation;
+
+	public String getId() {
+		return id;
 	}
-	public void e1(String employeeID) {
-		iDeMPLOYEE = employeeID;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String e2() {
-		return nAMEfULL;
+	public String getFullName() {
+		return fullName;
 	}
-	public void e2(String fullName) {
-		nAMEfULL = fullName;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
-	public String e3() {
-		return aDDRESS;
+	public String getAddress() {
+		return address;
 	}
-	public void e3(String address) {
-		aDDRESS = address;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String e4() {
-		return fACULTYnAME;
+	public String getFaculty() {
+		return faculty;
 	}
-	public void e4(String facultyName) {
-		fACULTYnAME = facultyName;
+	public void setFaculty(String faculty) {
+		this.faculty = faculty;
 	}
-	public String e5() {
-		return dEPARTMENT;
+	public String getDepartment() {
+		return department;
 	}
-	public void e5(String department) {
-		dEPARTMENT = department;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	public String e6() {
-		return dESIGNATION;
+	public String getDesignation() {
+		return designation;
 	}
-	public void e6(String designation) {
-		dESIGNATION = designation;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 	@Override
 	public String toString() {
-		
-		return "Employee ID = " + iDeMPLOYEE + "\n" + "FullName = " + nAMEfULL + "\n" + "Address = " + aDDRESS + "\n"
-				+ "Faculty Name = " + fACULTYnAME + "\n" + "Department = " + dEPARTMENT + "\n" + "Designation = "
-				+ dESIGNATION;
+		return "Employee ID = " + id + "\n" + "FullName = " + fullName + "\n" + "Address = " + address + "\n"
+				+ "Faculty Name = " + faculty + "\n" + "Department = " + department + "\n" + "Designation = "
+				+ designation;
 	}
 }
