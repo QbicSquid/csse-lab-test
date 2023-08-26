@@ -25,13 +25,32 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 
+/* *
+ * This class is used to transform the EmployeeRequest.xml to EmployeeResponse.xml
+ * 
+ * @throws TransformerConfigurationException
+ * @throws TransformerFactoryConfigurationError
+ * @throws TransformerException
+ * @throws ParserConfigurationException
+ * @throws SAXException
+ * @throws IOException
+ * @throws XPathExpressionException
+ * 
+ * @see java.csse.config.Config
+ * @see #RequestTransform()
+ * 
+ */
 public class EmployeeTransformer extends Config {
 
 	private static final ArrayList<Map<String, String>> l = new ArrayList<Map<String, String>>();
 
 	private static Map<String, String> m = null;
 
-	public static void rEQUESTtRANSFORM() throws Exception {
+	/*
+	 * This method is used to transform the EmployeeRequest.xml to
+	 * EmployeeResponse.xml
+	 */
+	public static void RequestTransform() throws Exception {
 
 		Source x = new StreamSource(new File("src/e/EmployeeRequest.xml"));
 		Source s = new StreamSource(new File("src/e/Employee-modified.xsl"));
@@ -41,10 +60,12 @@ public class EmployeeTransformer extends Config {
 
 	public static ArrayList<Map<String, String>> XMLXPATHS() throws Exception {
 
-		Document d = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-				.parse("src/e/EmployeeResponse.xml");
+		Document d = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("src/e/EmployeeResponse.xml");
 		XPath x = XPathFactory.newInstance().newXPath();
 		int n = Integer.parseInt((String) x.compile("count(//Employees/Employee)").evaluate(d, XPathConstants.STRING));
+		/*
+		 * This loop is used to get the values from the EmployeeResponse.xml
+		 */
 		for (int i = 1; i <= n; i++) {
 			m = new HashMap<String, String>();
 			m.put("XpathEmployeeIDKey", (String) x.compile("//Employees/Employee[" + i + "]/EmployeeID/text()")
