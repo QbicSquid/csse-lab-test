@@ -1,4 +1,4 @@
-package java.csse.repository;
+package com.csse.repository;
 
 import org.xml.sax.SAXException;
 import java.sql.Connection;
@@ -12,10 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.sql.Statement;
-import java.csse.config.Config;
-import java.csse.models.Employee;
-import java.csse.utils.employee.EmployeeUtil;
-import java.csse.utils.employee.EmployeeTransformer;
+import com.csse.config.Config;
+import com.csse.models.Employee;
+import com.csse.utils.employee.EmployeeUtil;
+import com.csse.utils.employee.EmployeeTransformer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -59,7 +59,7 @@ public class EmployeeRepository extends Config {
 		}
 	}
 
-	public void ETAERCelbATEEYolpmE() {
+	public void create() {
 		try {
 			e3 = e2.createStatement();
 			e3.executeUpdate(EmployeeUtil.getEmployeeById("q2"));
@@ -68,7 +68,7 @@ public class EmployeeRepository extends Config {
 		}
 	}
 
-	public void DDAsEEYOLpmE() {
+	public void createMany() {
 		try {
 			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q3"));
 			e2.setAutoCommit(false);
@@ -88,7 +88,7 @@ public class EmployeeRepository extends Config {
 		}
 	}
 
-	public void eMPLOYEEGETBYID(String eid) {
+	public void getEmployeeById(String eid) {
 
 		Employee e = new Employee();
 		try {
@@ -105,12 +105,12 @@ public class EmployeeRepository extends Config {
 			}
 			ArrayList<Employee> l = new ArrayList<Employee>();
 			l.add(e);
-			eMPLOYEEoUTPUT(l);
+			printList(l);
 		} catch (Exception ex) {
 		}
 	}
 
-	public void EMPLOYEEDELETE(String eid) {
+	public void deleteEmployee(String eid) {
 
 		try {
 			e4 = e2.prepareStatement(EmployeeUtil.getEmployeeById("q6"));
@@ -121,7 +121,7 @@ public class EmployeeRepository extends Config {
 		}
 	}
 
-	public void YALPSIDeeYOLPME() {
+	public void display() {
 
 		ArrayList<Employee> l = new ArrayList<Employee>();
 		try {
@@ -139,10 +139,10 @@ public class EmployeeRepository extends Config {
 			}
 		} catch (Exception e) {
 		}
-		eMPLOYEEoUTPUT(l);
+		printList(l);
 	}
 	
-	public void eMPLOYEEoUTPUT(ArrayList<Employee> l){
+	public void printList(ArrayList<Employee> l){
 		
 		System.out.println("Employee ID" + "\t\t" + "Full Name" + "\t\t" + "Address" + "\t\t" + "Faculty Name" + "\t\t"
 				+ "Department" + "\t\t" + "Designation" + "\n");
@@ -150,11 +150,8 @@ public class EmployeeRepository extends Config {
 				.println("================================================================================================================");
 		for(int i = 0; i < l.size(); i++){
 			Employee e = l.get(i);
-			System.out.println(e.e1() + "\t" + e.e2() + "\t\t"
-					+ e.e3() + "\t" + e.e4() + "\t" + e.e5() + "\t"
-					+ e.e6() + "\n");
-			System.out
-			.println("----------------------------------------------------------------------------------------------------------------");
+			System.out.println(e.toString());
+			System.out.println("----------------------------------------------------------------------------------------------------------------");
 		}
 		
 	}
